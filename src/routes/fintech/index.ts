@@ -138,20 +138,6 @@ router.get( // 3-legged 사용자 인증 (프로젝트내 authrize.html파일로
 			randomText += possible.charAt(Math.floor(Math.random() * possible.length));
 		}
 
-		// const params: any = new URLSearchParams();
-		// params.append("response_type", "code");
-		// params.append("client_id", config.KFTC.CLIENTID);
-		// params.append("redirect_url", "http://localhost:5221/fintech/test");
-		// params.append("scope", "login inquiry transfer");
-		// params.append("client_info", "test info");
-		// params.append("state", randomText);
-		// params.append("auth_type", "0");
-		// params.append("leng", "kor");
-		// params.append("cellphone_cert_yn", "Y");
-		// params.append("authorized_cert_yn", "Y");
-		// params.append("account_hold_auth_yn", "Y");
-		// params.append("register_info", "A");
-
 		const header = {
 			params: {
 				response_type: "code",
