@@ -1,0 +1,150 @@
+{
+	"ipcMode": null,
+	"executionRoleArn": null,
+	"containerDefinitions": [
+	  {
+		"dnsSearchDomains": null,
+		"environmentFiles": null,
+		"logConfiguration": {
+		  "logDriver": "awslogs",
+		  "secretOptions": null,
+		  "options": {
+			"awslogs-group": "/ecs/main-worker",
+			"awslogs-region": "ap-northeast-2",
+			"awslogs-stream-prefix": "ecs"
+		  }
+		},
+		"entryPoint": null,
+		"portMappings": [
+		  {
+			"hostPort": 0,
+			"protocol": "tcp",
+			"containerPort": 5221
+		  }
+		],
+		"command": null,
+		"linuxParameters": null,
+		"cpu": 0,
+		"environment": [
+		  {
+			"name": "WEB_HOST",
+			"value": "https://minteimint-pot"
+		  },
+		  {
+			"name": "WEB_PORT",
+			"value": "5221"
+		  },
+		  {
+			"name": "WEB_CORS",
+			"value": "https://front-localhost"
+		  },
+		  {
+			"name": "MYSQL_HOST",
+			"value": "main-minteimint.mysqldb.domain.com"
+		  },
+		  {
+			"name": "MYSQL_PORT",
+			"value": "3306"
+		  },
+		  {
+			"name": "MYSQL_USERNAME",
+			"value": "minteimint_pot"
+		  },
+		  {
+			"name": "MYSQL_PASSWORD",
+			"value": "sAtkemMWQNws1WMWMsa!"
+		  },
+		  {
+			"name": "MYSQL_DATABASE",
+			"value": "pot-main"
+		  },
+		  {
+			"name": "MYSQL_SYNCHRONIZE",
+			"value": "true"
+		  },
+		  {
+			"name": "MYSQL_LOGGING",
+			"value": "true"
+		  },
+		  {
+			"name": "KFTC_CLIENTID",
+			"value": "e3e451d8-ff0c-402f-b411-4ab414497fba"
+		  },
+		  {
+			"name": "KFTC_CLIENTSECRET",
+			"value": "490c434e-23fd-40a3-8b99-586ba498ad3f"
+		  }
+		],
+		"resourceRequirements": null,
+		"ulimits": null,
+		"dnsServers": null,
+		"mountPoints": [],
+		"workingDirectory": null,
+		"secrets": null,
+		"dockerSecurityOptions": null,
+		"memory": 256,
+		"memoryReservation": null,
+		"volumesFrom": [],
+		"stopTimeout": null,
+		"image": "9922882313.dkr.ecr.ap-northeast-2.amazonaws.com/pot-mainWorker:ff0f0aad9282c0a99bd1aa56cf63b19f084ca",
+		"startTimeout": null,
+		"firelensConfiguration": null,
+		"dependsOn": null,
+		"disableNetworking": null,
+		"interactive": null,
+		"healthCheck": null,
+		"essential": true,
+		"links": null,
+		"hostname": null,
+		"extraHosts": null,
+		"pseudoTerminal": null,
+		"user": null,
+		"readonlyRootFilesystem": false,
+		"dockerLabels": null,
+		"systemControls": null,
+		"privileged": null,
+		"name": "main-worker"
+	  }
+	],
+	"placementConstraints": [],
+	"memory": "256",
+	"taskRoleArn": null,
+	"compatibilities": [
+	  "EXTERNAL",
+	  "EC2"
+	],
+	"taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:4522293182:task-definition/main-worker:1",
+	"family": "main-worker",
+	"requiresAttributes": [
+	  {
+		"targetId": null,
+		"targetType": null,
+		"value": null,
+		"name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+	  },
+	  {
+		"targetId": null,
+		"targetType": null,
+		"value": null,
+		"name": "com.amazonaws.ecs.capability.ecr-auth"
+	  },
+	  {
+		"targetId": null,
+		"targetType": null,
+		"value": null,
+		"name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+	  }
+	],
+	"pidMode": null,
+	"requiresCompatibilities": [
+	  "EC2"
+	],
+	"networkMode": "bridge",
+	"cpu": null,
+	"revision": 17,
+	"status": "ACTIVE",
+	"inferenceAccelerators": null,
+	"proxyConfiguration": null,
+	"volumes": []
+  }
+  
