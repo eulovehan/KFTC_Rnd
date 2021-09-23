@@ -1,20 +1,40 @@
-!<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<body>
-		<button class="fintechButtion" onclick="fintechClient()">금융결제원 사용자 인증 테스트</button>
+		<button class="fintechButtion1" onclick="fintechClient1()">금융결제원 사용자 인증 테스트</button>
+		<hr/>
+		<button class="fintechButtion2" onclick="fintechClient2()">금융결제원 사용자 갱신 테스트</button>
 	</body>
 	<script>
-		function fintechClient() {
+		function fintechClient1() {
 			var tmpWindow = window.open('about:blank')
             tmpWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?" +
 			"response_type=code&" +
 			"client_id=c29396db-57de-42f4-b30c-bba49769502f&" +
-			"redirect_uri=http%3A%2F%2Flocalhost%3A5221%2Ffintech%2Ftest&scope=login%20inquiry%20transfer&client_info=test%20info&" +
+			"redirect_uri=http%3A%2F%2Flocalhost%3A5221%2Ffintech%2F3legged%2FuserAuth%2Fcreate%2Fredirect&" +
+			"scope=login%20inquiry%20transfer&" +
+			"client_info=test%20info&" +
 			"state=b80BLsfigm9OokPTjy03elbJqRHOfGS6&" +
 			"auth_type=0&" +
 			"cellphone_cert_yn=Y&" +
 			"authorized_cert_yn=Y&" +
-			"account_hold_auth_yn=N&" +
+			"account_hold_auth_yn=Y&" +
+			"register_info=A"
+		}
+		
+		function fintechClient2() {
+			var tmpWindow = window.open('about:blank')
+            tmpWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize_account?" +
+			"response_type=code&" +
+			"client_id=c29396db-57de-42f4-b30c-bba49769502f&" +
+			"redirect_uri=http%3A%2F%2Flocalhost%3A5221%2Ffintech%2F3legged%2FuserAuth%2Frefresh%2Fredirect&" +
+			"scope=login%20inquiry%20transfer&" +
+			"client_info=test%20info&" +
+			"state=b80BLsfigm9OokPTjy03elbJqRHOfGS6&" +
+			"auth_type=0&" +
+			"cellphone_cert_yn=Y&" +
+			"authorized_cert_yn=Y&" +
+			"account_hold_auth_yn=Y&" +
 			"register_info=A"
 		}
 	</script>

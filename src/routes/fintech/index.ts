@@ -112,12 +112,60 @@ router.get(
 	})
 )
 
-router.get( // 2-legged 토큰 발급 (파라미터 에러남)
-	"/test",
+// router.get( // 3-legged 사용자 인증 (프로젝트내 authrize.html파일로 실행)
+// 	"/3legged/auth",
+// 	AsyncWrapper (async (req: Request, res: Response) => {
+// 		const openApiRoute: string = "/oauth/2.0/authorize";
+// 		const url: string = `${testHost}${openApiRoute}`;
+
+// 		// state에 사용될 난수
+// 		let randomText = "";
+// 		let possible = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
+// 		for ( var i = 0; i < 32; i++ ) {
+// 			randomText += possible.charAt(Math.floor(Math.random() * possible.length));
+// 		}
+
+// 		const header = {
+// 			params: {
+// 				response_type: "code",
+// 				client_id: config.KFTC.CLIENTID,
+// 				redirect_url: "http://localhost:5221/fintech/test",
+// 				scope: "login inquiry transfer",
+// 				client_info: "test info",
+// 				state: randomText,
+// 				auth_type: "0",
+// 				leng: "kor",
+// 				cellphone_cert_yn: "Y",
+// 				authorized_cert_yn: "Y",
+// 				account_hold_auth_yn: "Y",
+// 				register_info: "A"
+// 			}
+// 		}
+
+// 		await axios.get(url, header).then((axiosRes) => {
+// 			console.log(axiosRes);
+			
+// 			res.status(200).json(axiosRes.data);
+// 		}).catch((err) => {
+// 			console.log(err);
+// 			res.status(400).json({
+// 				opcode: Opcode.Error,
+// 				message: "사용자 인증에 실패 하였습니다.",
+// 				errMessage: err.toString()
+// 			});
+// 		});
+
+// 		console.log(header);
+// 		console.log(url);
+// 	})
+// )
+
+router.get( // 3-legged 사용자 인증 리다이렉트
+	"/3legged/userAuth/create/redirect",
 	AsyncWrapper (async (req: Request, res: Response) => {
 		console.log(`\n\n\n==> req`);
 		console.log(req.query);
-		
+
 		res.status(200).json({
 			opcode: Opcode.Success,
 			query: req.query
@@ -125,51 +173,16 @@ router.get( // 2-legged 토큰 발급 (파라미터 에러남)
 	})
 )
 
-router.get( // 3-legged 사용자 인증 (프로젝트내 authrize.html파일로 실행)
-	"/3legged/auth",
+router.get( // 3-legged 사용자 갱신 리다이렉트
+	"/3legged/userAuth/refresh/redirect",
 	AsyncWrapper (async (req: Request, res: Response) => {
-		const openApiRoute: string = "/oauth/2.0/authorize";
-		const url: string = `${testHost}${openApiRoute}`;
+		console.log(`\n\n\n==> req`);
+		console.log(req.query);
 
-		// state에 사용될 난수
-		let randomText = "";
-		let possible = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
-		for ( var i = 0; i < 32; i++ ) {
-			randomText += possible.charAt(Math.floor(Math.random() * possible.length));
-		}
-
-		const header = {
-			params: {
-				response_type: "code",
-				client_id: config.KFTC.CLIENTID,
-				redirect_url: "http://localhost:5221/fintech/test",
-				scope: "login inquiry transfer",
-				client_info: "test info",
-				state: randomText,
-				auth_type: "0",
-				leng: "kor",
-				cellphone_cert_yn: "Y",
-				authorized_cert_yn: "Y",
-				account_hold_auth_yn: "Y",
-				register_info: "A"
-			}
-		}
-
-		await axios.get(url, header).then((axiosRes) => {
-			console.log(axiosRes);
-			
-			res.status(200).json(axiosRes.data);
-		}).catch((err) => {
-			console.log(err);
-			res.status(400).json({
-				opcode: Opcode.Error,
-				message: "사용자 인증에 실패 하였습니다.",
-				errMessage: err.toString()
-			});
-		});
-
-		console.log(header);
-		console.log(url);
+		res.status(200).json({
+			opcode: Opcode.Success,
+			query: req.query
+		})
 	})
 )
 
@@ -210,10 +223,10 @@ router.get( // 3-leeged 토큰 발급
 	})
 )
 
-router.get( // 3-leeged 사용자 정보 확인
-	"/3legged/user/me",
+router.get( // 3-leeged 등록 계좌 조회
+	"/3legged/account/list",
 	AsyncWrapper (async (req: Request, res: Response) => {
-		const openApiRoute: string = "/v2.0/user/me";
+		const openApiRoute: string = "/v2.0/account/list";
 		const url: string = `${testHost}${openApiRoute}`;
 
 		const header = {
@@ -221,7 +234,9 @@ router.get( // 3-leeged 사용자 정보 확인
 				authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwOTk4Mjc4Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2Mzk2NTI0NDAsImp0aSI6ImUyYjFkYjgxLWIzMDItNGY3NC05ZjY4LTYzMzUyNjU2ZmYxNCJ9.vvNXUw-Jr1BHhiYR2hAnVQaBMeLd2vHBATTt8Azf08Q"
 			},
 			params: {
-				user_seq_no: "1100998278"
+				user_seq_no: "1100998278",
+				include_cancle_yn: "N",
+				sort_order: "D"
 			}
 		}
 
